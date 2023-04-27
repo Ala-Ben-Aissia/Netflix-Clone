@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load rating %}
+{% block head_title %}
+
+{{block.super}} / {% if title %}{{title}}{% endif %} / {% if object %}{{object.title}}{% endif %}
+
+{% endblock head_title %}
+
+{% block content %}
+{% rating with object=object %} <br>
+<b>{{object.title}} :{{object.get_short_display}}</b>
+    {% if object.parent is None %}
+            {{object.title}} TvShow
+    {% endif %}    
+    {% if object.seasons %}
+        {% for season in object.seasons %}
+            <ul>{{season.title}}</ul>
+        {% endfor %}
+    {% endif %}
+    {% if object.videos %}
+        {% for video in object.videos.all %}
+            <ul>{{video.title}}</ul>
+        {% endfor %}
+    {% endif %}    
+
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load rating %}
+{% block head_title %}
+
+{{block.super}} / {% if title %}{{title}}{% endif %} / {% if object %}{{object.title}}{% endif %}
+
+{% endblock head_title %}
+
+{% block content %}
+<b>{{object.title}} : {{object.get_short_display}}</b>
+<br>
+{% rating with object=object%} 
+<ul>
+{% for season in object.seasons %}
+<li><a href="{{season.get_absolute_url}}">{{season.title}}</a></li>
+{% endfor %}
+</ul>
+
+
+{% endblock %}

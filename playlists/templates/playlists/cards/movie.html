@@ -1,0 +1,2 @@
+{% load rating %}
+<a href="{{movie.get_absolute_url}}"><b>{{movie}}</b> : {% rating with object=movie %}</a>

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block head_title %}
+
+{{block.super}} / {{title}}
+
+{% endblock head_title %}
+
+{% block content %}
+    {% if title %}
+        <h1>{{title}}</h1>
+    {% endif %}
+    <ul>
+        {% for object in object_list %}
+        <li>
+            <a href="{{object.get_absolute_url}}">{{object}}</a> 
+        </li>
+        {% endfor %}      
+      
+    </ul>
+{% endblock content %}

@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block head_title %}
+
+{{block.super}} / {% if title %}{{title}}{% endif %}
+
+{% endblock head_title %}
+
+{% block content %}
+        {% for object in object_list %}
+        <li> 
+            <!-- <b>{{object}}</b> 
+            <ul>
+            {% for related in object.related.all  %}
+                {% include 'videos/embed.html' with video_id=related.video.get_video_id %}
+            {% endfor %}
+            </ul> -->
+            <b>{{object}}</b> 
+            <ul>
+            {% for item in object.get_related_items %}
+            {% if item.related.is_movie %}
+                <li>{% include 'playlists/cards/movie.html' with movie=item.related %}</li>
+            {% elif item.related.is_show %}
+                <li>{% include 'playlists/cards/show.html' with show=item.related %}</li>
+            {% endif %}
+            {% endfor %}
+            </ul>
+        </li>
+
+            
+        {% endfor %}        
+
+{% endblock content %}

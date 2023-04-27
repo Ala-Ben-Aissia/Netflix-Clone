@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block head_title %}
+
+{{block.super}} / {% if title %}{{title}}{% endif %}
+
+{% endblock head_title %}
+
+{% block content %}
+    <h1>{{object.title}} </h1>
+    <h3>Trailer</h3>
+    {% include 'videos/embed.html' with video_id=object.get_season_trailer.video_id %}
+    <h3>Episodes</h3>
+    
+        {% for episode in object.get_season_episodes %}
+            <h5>Episode {{episode.order}}</h5>
+            {% include "videos/embed.html" with video_id=episode.video.get_video_id %}
+        {% endfor %}
+    
+    
+        {% for object in object_list %}
+            <li><b>{{object.title}} :</b> {{object.get_short_display}}
+            </li> 
+        {% endfor %}
+    
+
+{% endblock content %}

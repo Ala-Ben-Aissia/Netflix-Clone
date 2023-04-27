@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load rating %}
+{% block head_title %}
+
+{{block.super}} / {% if title %}{{title}}{% endif %} / {% if object %}{{object.title}}{% endif %}
+
+{% endblock head_title %}
+
+{% block content %}
+<div>
+    {% rating with object=object%}
+</div>
+
+<div>
+    <b>{{object.title}} : {{object.get_short_display}}</b>
+    {% include 'videos/embed.html' with video_id=object.get_trailer_id %}
+</div>
+{% endblock %}
