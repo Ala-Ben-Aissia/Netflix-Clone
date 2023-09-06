@@ -1,2 +1,2 @@
 # DjangoFlix
-Netflix-Like Website
+Netflix Clone Website .. Advanced django topics
